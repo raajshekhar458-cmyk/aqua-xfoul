@@ -3,13 +3,13 @@
 import Link from "next/link";
 import React from "react";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "iconify-icon": any;
-    }
-  }
-}
+
+
+
+// Wrapper to bypass TypeScript JSX IntrinsicElements checks for custom web components
+const Icon = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { icon: string, class?: string }) => {
+  return React.createElement('iconify-icon', props);
+};
 
 export default function LandingPage() {
   return (
@@ -46,15 +46,15 @@ export default function LandingPage() {
 
             <div className="flex items-center gap-2">
               <Link id="nav-see-technology-link" href="#technology" className="hidden sm:inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm text-slate-200 ring-1 ring-white/10 hover:ring-white/18 hover:bg-white/5 transition">
-                <iconify-icon icon="lucide:cpu" className="text-base text-aqua-500"></iconify-icon>
+                <Icon icon="lucide:cpu" className="text-base text-aqua-500"></Icon>
                 See technology
               </Link>
               <Link id="nav-request-demo-link" href="#contact" className="inline-flex items-center gap-2 rounded-xl bg-aqua-500 px-3.5 py-2 text-sm font-medium text-ink-950 shadow-glow hover:bg-[#2be2ff] transition">
-                <iconify-icon icon="lucide:calendar" className="text-base"></iconify-icon>
+                <Icon icon="lucide:calendar" className="text-base"></Icon>
                 Request demo
               </Link>
               <Link id="nav-mobile-menu-link" href="#contact" className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition" aria-label="Contact">
-                <iconify-icon icon="lucide:arrow-right" className="text-lg text-slate-200"></iconify-icon>
+                <Icon icon="lucide:arrow-right" className="text-lg text-slate-200"></Icon>
               </Link>
             </div>
           </div>
@@ -104,11 +104,11 @@ export default function LandingPage() {
 
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link id="hero-request-demo-link" href="#contact" className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-aqua-500 px-5 py-3 text-sm font-medium text-ink-950 shadow-glow hover:bg-[#2be2ff] transition sm:w-auto">
-                    <iconify-icon icon="lucide:calendar" className="text-lg"></iconify-icon>
+                    <Icon icon="lucide:calendar" className="text-lg"></Icon>
                     Request Demo
                   </Link>
                   <Link id="hero-see-technology-link" href="#technology" className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white/5 px-5 py-3 text-sm font-medium text-white ring-1 ring-white/12 hover:bg-white/8 hover:ring-white/18 transition sm:w-auto">
-                    <iconify-icon icon="lucide:arrow-right" className="text-lg text-aqua-500"></iconify-icon>
+                    <Icon icon="lucide:arrow-right" className="text-lg text-aqua-500"></Icon>
                     See Technology
                   </Link>
                 </div>
@@ -116,21 +116,21 @@ export default function LandingPage() {
                 <div className="mt-10 grid grid-cols-2 gap-3 sm:max-w-xl sm:grid-cols-3">
                   <div className="glass rounded-2xl p-4">
                     <div className="flex items-center gap-2">
-                      <iconify-icon icon="lucide:gauge" className="text-xl text-aqua-500"></iconify-icon>
+                      <Icon icon="lucide:gauge" className="text-xl text-aqua-500"></Icon>
                       <div className="text-xs text-slate-300">Efficiency</div>
                     </div>
                     <div className="mt-2 text-sm text-white">Designed to reduce drag-inducing growth quickly.</div>
                   </div>
                   <div className="glass rounded-2xl p-4">
                     <div className="flex items-center gap-2">
-                      <iconify-icon icon="lucide:shield-check" className="text-xl text-aqua-400"></iconify-icon>
+                      <Icon icon="lucide:shield-check" className="text-xl text-aqua-400"></Icon>
                       <div className="text-xs text-slate-300">Trust</div>
                     </div>
                     <div className="mt-2 text-sm text-white">Operator-safe workflows and audit-ready reporting.</div>
                   </div>
                   <div className="glass rounded-2xl p-4 col-span-2 sm:col-span-1">
                     <div className="flex items-center gap-2">
-                      <iconify-icon icon="lucide:leaf" className="text-xl text-emerald-300"></iconify-icon>
+                      <Icon icon="lucide:leaf" className="text-xl text-emerald-300"></Icon>
                       <div className="text-xs text-slate-300">Environmental</div>
                     </div>
                     <div className="mt-2 text-sm text-white">Fewer emissions from cleaner hulls and optimized schedules.</div>
@@ -187,7 +187,7 @@ export default function LandingPage() {
                       <div className="mt-4 flex items-center justify-between rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
                         <div className="flex items-center gap-3">
                           <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                            <iconify-icon icon="lucide:file-text" className="text-lg text-aqua-500"></iconify-icon>
+                            <Icon icon="lucide:file-text" className="text-lg text-aqua-500"></Icon>
                           </span>
                           <div>
                             <div className="text-sm text-white">Automated report</div>
@@ -196,7 +196,7 @@ export default function LandingPage() {
                         </div>
                         <span className="inline-flex items-center gap-1 text-xs text-slate-200">
                           Export
-                          <iconify-icon icon="lucide:download" className="text-base text-slate-300"></iconify-icon>
+                          <Icon icon="lucide:download" className="text-base text-slate-300"></Icon>
                         </span>
                       </div>
                     </div>
@@ -212,19 +212,19 @@ export default function LandingPage() {
                   <div className="text-xs text-slate-400">Trusted by operators who demand measurable outcomes:</div>
                   <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300">
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:ship" className="text-base text-slate-200"></iconify-icon>
+                      <Icon icon="lucide:ship" className="text-base text-slate-200"></Icon>
                       Fleet operations
                     </span>
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:container" className="text-base text-slate-200"></iconify-icon>
+                      <Icon icon="lucide:container" className="text-base text-slate-200"></Icon>
                       Port authorities
                     </span>
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:hard-hat" className="text-base text-slate-200"></iconify-icon>
+                      <Icon icon="lucide:hard-hat" className="text-base text-slate-200"></Icon>
                       Drydock teams
                     </span>
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:badge-check" className="text-base text-aqua-500"></iconify-icon>
+                      <Icon icon="lucide:badge-check" className="text-base text-aqua-500"></Icon>
                       Audit-ready reporting
                     </span>
                   </div>
@@ -249,7 +249,7 @@ export default function LandingPage() {
                   <div className="glass hover-rise rounded-2xl p-4 shadow-glow">
                     <div className="flex items-start gap-3">
                       <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:flame" className="text-lg text-aqua-500"></iconify-icon>
+                        <Icon icon="lucide:flame" className="text-lg text-aqua-500"></Icon>
                       </span>
                       <div>
                         <div className="text-sm font-medium text-white">Fuel loss</div>
@@ -260,7 +260,7 @@ export default function LandingPage() {
                   <div className="glass hover-rise rounded-2xl p-4">
                     <div className="flex items-start gap-3">
                       <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:cloud" className="text-lg text-emerald-200"></iconify-icon>
+                        <Icon icon="lucide:cloud" className="text-lg text-emerald-200"></Icon>
                       </span>
                       <div>
                         <div className="text-sm font-medium text-white">Emissions increase</div>
@@ -271,7 +271,7 @@ export default function LandingPage() {
                   <div className="glass hover-rise rounded-2xl p-4">
                     <div className="flex items-start gap-3">
                       <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:clock" className="text-lg text-slate-200"></iconify-icon>
+                        <Icon icon="lucide:clock" className="text-lg text-slate-200"></Icon>
                       </span>
                       <div>
                         <div className="text-sm font-medium text-white">Maintenance delays</div>
@@ -292,7 +292,7 @@ export default function LandingPage() {
                           <div className="mt-1 text-sm font-medium text-white">Biofouled hull</div>
                         </div>
                         <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 ring-1 ring-white/10">
-                          <iconify-icon icon="lucide:alert-triangle" className="text-sm text-amber-200"></iconify-icon>
+                          <Icon icon="lucide:alert-triangle" className="text-sm text-amber-200"></Icon>
                           Drag ↑
                         </span>
                       </div>
@@ -324,7 +324,7 @@ export default function LandingPage() {
                           <div className="mt-1 text-sm font-medium text-white">Clean, efficient surface</div>
                         </div>
                         <span className="inline-flex items-center gap-1 rounded-full bg-emerald-400/10 px-2.5 py-1 text-[11px] text-emerald-200 ring-1 ring-emerald-300/15">
-                          <iconify-icon icon="lucide:check" className="text-sm"></iconify-icon>
+                          <Icon icon="lucide:check" className="text-sm"></Icon>
                           Performance stable
                         </span>
                       </div>
@@ -392,7 +392,7 @@ export default function LandingPage() {
                 <p className="mt-4 max-w-2xl text-slate-200/90 leading-relaxed">Three capabilities, engineered to work together: reliable autonomy, inspection-grade perception, and environmentally disciplined operations.</p>
               </div>
               <Link id="solution-cta-link" href="#contact" className="inline-flex items-center gap-2 self-start rounded-2xl bg-white/5 px-4 py-2.5 text-sm font-medium text-white ring-1 ring-white/12 hover:bg-white/8 hover:ring-white/18 transition lg:self-auto">
-                <iconify-icon icon="lucide:message-square" className="text-lg text-aqua-500"></iconify-icon>
+                <Icon icon="lucide:message-square" className="text-lg text-aqua-500"></Icon>
                 Talk to an engineer
               </Link>
             </div>
@@ -402,7 +402,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6 shadow-glow">
                   <div className="flex items-center justify-between">
                     <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:bot" className="text-2xl text-aqua-500"></iconify-icon>
+                      <Icon icon="lucide:bot" className="text-2xl text-aqua-500"></Icon>
                     </span>
                     <span className="text-[11px] text-slate-400">Pillar 01</span>
                   </div>
@@ -425,7 +425,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6 shadow-glow2">
                   <div className="flex items-center justify-between">
                     <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:scan-eye" className="text-2xl text-emerald-200"></iconify-icon>
+                      <Icon icon="lucide:scan-eye" className="text-2xl text-emerald-200"></Icon>
                     </span>
                     <span className="text-[11px] text-slate-400">Pillar 02</span>
                   </div>
@@ -448,7 +448,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6">
                   <div className="flex items-center justify-between">
                     <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:leaf" className="text-2xl text-aqua-400"></iconify-icon>
+                      <Icon icon="lucide:leaf" className="text-2xl text-aqua-400"></Icon>
                     </span>
                     <span className="text-[11px] text-slate-400">Pillar 03</span>
                   </div>
@@ -465,7 +465,7 @@ export default function LandingPage() {
                         Emissions ↓
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:timer" className="text-sm"></iconify-icon>
+                        <Icon icon="lucide:timer" className="text-sm"></Icon>
                         Downtime minimized
                       </span>
                     </div>
@@ -492,7 +492,7 @@ export default function LandingPage() {
                   <div className="relative p-6">
                     <div className="flex items-center gap-3">
                       <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:box" className="text-xl text-aqua-500"></iconify-icon>
+                        <Icon icon="lucide:box" className="text-xl text-aqua-500"></Icon>
                       </span>
                       <div>
                         <div className="text-xs text-slate-400">Step 01</div>
@@ -506,7 +506,7 @@ export default function LandingPage() {
                   <div className="relative p-6">
                     <div className="flex items-center gap-3">
                       <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:route" className="text-xl text-emerald-200"></iconify-icon>
+                        <Icon icon="lucide:route" className="text-xl text-emerald-200"></Icon>
                       </span>
                       <div>
                         <div className="text-xs text-slate-400">Step 02</div>
@@ -520,7 +520,7 @@ export default function LandingPage() {
                   <div className="relative p-6">
                     <div className="flex items-center gap-3">
                       <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:sparkles" className="text-xl text-aqua-500"></iconify-icon>
+                        <Icon icon="lucide:sparkles" className="text-xl text-aqua-500"></Icon>
                       </span>
                       <div>
                         <div className="text-xs text-slate-400">Step 03</div>
@@ -534,7 +534,7 @@ export default function LandingPage() {
                   <div className="relative p-6">
                     <div className="flex items-center gap-3">
                       <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:camera" className="text-xl text-slate-200"></iconify-icon>
+                        <Icon icon="lucide:camera" className="text-xl text-slate-200"></Icon>
                       </span>
                       <div>
                         <div className="text-xs text-slate-400">Step 04</div>
@@ -548,7 +548,7 @@ export default function LandingPage() {
                   <div className="p-6">
                     <div className="flex items-center gap-3">
                       <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:file-bar-chart" className="text-xl text-aqua-400"></iconify-icon>
+                        <Icon icon="lucide:file-bar-chart" className="text-xl text-aqua-400"></Icon>
                       </span>
                       <div>
                         <div className="text-xs text-slate-400">Step 05</div>
@@ -564,20 +564,20 @@ export default function LandingPage() {
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300">
                       <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:lock" className="text-sm text-slate-200"></iconify-icon>
+                        <Icon icon="lucide:lock" className="text-sm text-slate-200"></Icon>
                         Secure data handling
                       </span>
                       <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:clipboard-check" className="text-sm text-slate-200"></iconify-icon>
+                        <Icon icon="lucide:clipboard-check" className="text-sm text-slate-200"></Icon>
                         Evidence trail
                       </span>
                       <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:settings" className="text-sm text-slate-200"></iconify-icon>
+                        <Icon icon="lucide:settings" className="text-sm text-slate-200"></Icon>
                         Operator-friendly controls
                       </span>
                     </div>
                     <Link id="how-cta-link" href="#contact" className="inline-flex items-center gap-2 rounded-xl bg-white/5 px-3.5 py-2 text-sm font-medium text-white ring-1 ring-white/12 hover:bg-white/8 hover:ring-white/18 transition">
-                      <iconify-icon icon="lucide:arrow-right" className="text-lg text-aqua-500"></iconify-icon>
+                      <Icon icon="lucide:arrow-right" className="text-lg text-aqua-500"></Icon>
                       Get deployment details
                     </Link>
                   </div>
@@ -602,7 +602,7 @@ export default function LandingPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                          <iconify-icon icon="lucide:eye" className="text-lg text-aqua-500"></iconify-icon>
+                          <Icon icon="lucide:eye" className="text-lg text-aqua-500"></Icon>
                         </span>
                         <div>
                           <div className="text-sm font-medium text-white">Computer Vision</div>
@@ -616,7 +616,7 @@ export default function LandingPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                          <iconify-icon icon="lucide:compass" className="text-lg text-emerald-200"></iconify-icon>
+                          <Icon icon="lucide:compass" className="text-lg text-emerald-200"></Icon>
                         </span>
                         <div>
                           <div className="text-sm font-medium text-white">Navigation System</div>
@@ -630,7 +630,7 @@ export default function LandingPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                          <iconify-icon icon="lucide:fan" className="text-lg text-aqua-400"></iconify-icon>
+                          <Icon icon="lucide:fan" className="text-lg text-aqua-400"></Icon>
                         </span>
                         <div>
                           <div className="text-sm font-medium text-white">Cleaning Mechanism</div>
@@ -644,7 +644,7 @@ export default function LandingPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                          <iconify-icon icon="lucide:bar-chart-3" className="text-lg text-slate-200"></iconify-icon>
+                          <Icon icon="lucide:bar-chart-3" className="text-lg text-slate-200"></Icon>
                         </span>
                         <div>
                           <div className="text-sm font-medium text-white">Data Analytics</div>
@@ -666,7 +666,7 @@ export default function LandingPage() {
                         <div className="mt-1 text-sm font-medium text-white" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>AquaXFoul ROV assembly</div>
                       </div>
                       <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-slate-300 ring-1 ring-white/10">
-                        <iconify-icon icon="lucide:layers" className="text-base text-aqua-500"></iconify-icon>
+                        <Icon icon="lucide:layers" className="text-base text-aqua-500"></Icon>
                         Modular subsystems
                       </span>
                     </div>
@@ -692,7 +692,7 @@ export default function LandingPage() {
                         <div className="glass-strong hover-rise rounded-2xl p-4 shadow-glow" style={{animation: "floaty 5.5s ease-in-out infinite"}}>
                           <div className="flex items-start gap-3">
                             <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                              <iconify-icon icon="lucide:eye" className="text-lg text-aqua-500"></iconify-icon>
+                              <Icon icon="lucide:eye" className="text-lg text-aqua-500"></Icon>
                             </span>
                             <div>
                               <div className="text-sm font-medium text-white">Computer Vision</div>
@@ -703,7 +703,7 @@ export default function LandingPage() {
                         <div className="glass-strong hover-rise rounded-2xl p-4" style={{animation: "floaty 6.2s ease-in-out infinite", animationDelay: ".25s"} as React.CSSProperties}>
                           <div className="flex items-start gap-3">
                             <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                              <iconify-icon icon="lucide:compass" className="text-lg text-emerald-200"></iconify-icon>
+                              <Icon icon="lucide:compass" className="text-lg text-emerald-200"></Icon>
                             </span>
                             <div>
                               <div className="text-sm font-medium text-white">Navigation</div>
@@ -714,7 +714,7 @@ export default function LandingPage() {
                         <div className="glass-strong hover-rise rounded-2xl p-4" style={{animation: "floaty 6.8s ease-in-out infinite", animationDelay: ".5s"} as React.CSSProperties}>
                           <div className="flex items-start gap-3">
                             <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                              <iconify-icon icon="lucide:fan" className="text-lg text-aqua-400"></iconify-icon>
+                              <Icon icon="lucide:fan" className="text-lg text-aqua-400"></Icon>
                             </span>
                             <div>
                               <div className="text-sm font-medium text-white">Cleaning Mechanism</div>
@@ -725,7 +725,7 @@ export default function LandingPage() {
                         <div className="glass-strong hover-rise rounded-2xl p-4" style={{animation: "floaty 7.4s ease-in-out infinite", animationDelay: ".75s"} as React.CSSProperties}>
                           <div className="flex items-start gap-3">
                             <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                              <iconify-icon icon="lucide:bar-chart-3" className="text-lg text-slate-200"></iconify-icon>
+                              <Icon icon="lucide:bar-chart-3" className="text-lg text-slate-200"></Icon>
                             </span>
                             <div>
                               <div className="text-sm font-medium text-white">Analytics</div>
@@ -740,7 +740,7 @@ export default function LandingPage() {
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-center gap-3">
                           <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-                            <iconify-icon icon="lucide:badge-check" className="text-lg text-aqua-500"></iconify-icon>
+                            <Icon icon="lucide:badge-check" className="text-lg text-aqua-500"></Icon>
                           </span>
                           <div>
                             <div className="text-sm font-medium text-white">Trust indicators</div>
@@ -763,21 +763,21 @@ export default function LandingPage() {
             <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-3">
               <div className="glass rounded-2xl p-5 ring-1 ring-white/10">
                 <div className="flex items-center gap-3">
-                  <iconify-icon icon="lucide:wrench" className="text-xl text-slate-200"></iconify-icon>
+                  <Icon icon="lucide:wrench" className="text-xl text-slate-200"></Icon>
                   <div className="text-sm font-medium text-white">Maintainable</div>
                 </div>
                 <p className="mt-2 text-sm text-slate-300">Modular components support serviceability and iterative upgrades.</p>
               </div>
               <div className="glass rounded-2xl p-5 ring-1 ring-white/10">
                 <div className="flex items-center gap-3">
-                  <iconify-icon icon="lucide:shield" className="text-xl text-aqua-500"></iconify-icon>
+                  <Icon icon="lucide:shield" className="text-xl text-aqua-500"></Icon>
                   <div className="text-sm font-medium text-white">Operational safety</div>
                 </div>
                 <p className="mt-2 text-sm text-slate-300">Designed for predictable behavior and controlled contact near assets.</p>
               </div>
               <div className="glass rounded-2xl p-5 ring-1 ring-white/10">
                 <div className="flex items-center gap-3">
-                  <iconify-icon icon="lucide:target" className="text-xl text-emerald-200"></iconify-icon>
+                  <Icon icon="lucide:target" className="text-xl text-emerald-200"></Icon>
                   <div className="text-sm font-medium text-white">Outcome-focused</div>
                 </div>
                 <p className="mt-2 text-sm text-slate-300">Cleaning plus data outputs aligned to decisions and schedules.</p>
@@ -800,7 +800,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6 shadow-glow">
                   <div className="flex items-center justify-between">
                     <div className="text-sm text-slate-300">Fuel savings</div>
-                    <iconify-icon icon="lucide:gauge" className="text-xl text-aqua-500"></iconify-icon>
+                    <Icon icon="lucide:gauge" className="text-xl text-aqua-500"></Icon>
                   </div>
                   <div className="mt-4 flex items-end gap-2">
                     <div className="text-5xl font-semibold tracking-tight text-white num" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>6–12</div>
@@ -817,7 +817,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6 shadow-glow2">
                   <div className="flex items-center justify-between">
                     <div className="text-sm text-slate-300">Emissions reduction</div>
-                    <iconify-icon icon="lucide:leaf" className="text-xl text-emerald-200"></iconify-icon>
+                    <Icon icon="lucide:leaf" className="text-xl text-emerald-200"></Icon>
                   </div>
                   <div className="mt-4 flex items-end gap-2">
                     <div className="text-5xl font-semibold tracking-tight text-white num" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>5–10</div>
@@ -834,7 +834,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6">
                   <div className="flex items-center justify-between">
                     <div className="text-sm text-slate-300">Operational efficiency</div>
-                    <iconify-icon icon="lucide:clock" className="text-xl text-aqua-400"></iconify-icon>
+                    <Icon icon="lucide:clock" className="text-xl text-aqua-400"></Icon>
                   </div>
                   <div className="mt-4 flex items-end gap-2">
                     <div className="text-5xl font-semibold tracking-tight text-white num" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>+1–3</div>
@@ -853,7 +853,7 @@ export default function LandingPage() {
                 <div className="lg:col-span-8">
                   <div className="flex items-center gap-3">
                     <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:calculator" className="text-xl text-aqua-500"></iconify-icon>
+                      <Icon icon="lucide:calculator" className="text-xl text-aqua-500"></Icon>
                     </span>
                     <div>
                       <div className="text-sm font-medium text-white">ROI-first evaluation</div>
@@ -877,11 +877,11 @@ export default function LandingPage() {
                 </div>
                 <div className="lg:col-span-4 flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
                   <Link id="impact-request-demo-link" href="#contact" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-aqua-500 px-5 py-3 text-sm font-medium text-ink-950 shadow-glow hover:bg-[#2be2ff] transition">
-                    <iconify-icon icon="lucide:calendar" className="text-lg"></iconify-icon>
+                    <Icon icon="lucide:calendar" className="text-lg"></Icon>
                     Book a demo
                   </Link>
                   <Link id="impact-download-brief-link" href="#contact" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 px-5 py-3 text-sm font-medium text-white ring-1 ring-white/12 hover:bg-white/8 hover:ring-white/18 transition">
-                    <iconify-icon icon="lucide:file-down" className="text-lg text-aqua-500"></iconify-icon>
+                    <Icon icon="lucide:file-down" className="text-lg text-aqua-500"></Icon>
                     Request technical brief
                   </Link>
                 </div>
@@ -904,7 +904,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6">
                   <div className="flex items-center justify-between">
                     <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:ship" className="text-2xl text-aqua-500"></iconify-icon>
+                      <Icon icon="lucide:ship" className="text-2xl text-aqua-500"></Icon>
                     </span>
                     <span className="text-[11px] text-slate-400">01</span>
                   </div>
@@ -923,7 +923,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6 shadow-glow2">
                   <div className="flex items-center justify-between">
                     <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:container" className="text-2xl text-emerald-200"></iconify-icon>
+                      <Icon icon="lucide:container" className="text-2xl text-emerald-200"></Icon>
                     </span>
                     <span className="text-[11px] text-slate-400">02</span>
                   </div>
@@ -942,7 +942,7 @@ export default function LandingPage() {
                 <div className="glass-strong rounded-[1.25rem] p-6 shadow-glow">
                   <div className="flex items-center justify-between">
                     <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-                      <iconify-icon icon="lucide:hard-hat" className="text-2xl text-aqua-400"></iconify-icon>
+                      <Icon icon="lucide:hard-hat" className="text-2xl text-aqua-400"></Icon>
                     </span>
                     <span className="text-[11px] text-slate-400">03</span>
                   </div>
@@ -977,14 +977,14 @@ export default function LandingPage() {
                     <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div className="glass rounded-2xl p-4 ring-1 ring-white/10">
                         <div className="flex items-center gap-3">
-                          <iconify-icon icon="lucide:shield-check" className="text-xl text-aqua-500"></iconify-icon>
+                          <Icon icon="lucide:shield-check" className="text-xl text-aqua-500"></Icon>
                           <div className="text-sm font-medium text-white">No clutter, no noise</div>
                         </div>
                         <div className="mt-2 text-sm text-slate-300">A single form. Fast response. Technical answers.</div>
                       </div>
                       <div className="glass rounded-2xl p-4 ring-1 ring-white/10">
                         <div className="flex items-center gap-3">
-                          <iconify-icon icon="lucide:badge-check" className="text-xl text-emerald-200"></iconify-icon>
+                          <Icon icon="lucide:badge-check" className="text-xl text-emerald-200"></Icon>
                           <div className="text-sm font-medium text-white">Trust-first</div>
                         </div>
                         <div className="mt-2 text-sm text-slate-300">Clear deliverables and evidence-ready reporting.</div>
@@ -993,11 +993,11 @@ export default function LandingPage() {
 
                     <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                       <Link id="contact-book-demo-link" href="#contact" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-aqua-500 px-5 py-3 text-sm font-medium text-ink-950 shadow-glow hover:bg-[#2be2ff] transition">
-                        <iconify-icon icon="lucide:calendar" className="text-lg"></iconify-icon>
+                        <Icon icon="lucide:calendar" className="text-lg"></Icon>
                         Book a Demo
                       </Link>
                       <Link id="contact-partner-link" href="#contact" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 px-5 py-3 text-sm font-medium text-white ring-1 ring-white/12 hover:bg-white/8 hover:ring-white/18 transition">
-                        <iconify-icon icon="lucide:handshake" className="text-lg text-aqua-500"></iconify-icon>
+                        <Icon icon="lucide:handshake" className="text-lg text-aqua-500"></Icon>
                         Partner With Us
                       </Link>
                     </div>
@@ -1011,7 +1011,7 @@ export default function LandingPage() {
                           <div className="mt-1 text-xs text-slate-400">We reply within 1–2 business days.</div>
                         </div>
                         <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-slate-300 ring-1 ring-white/10">
-                          <iconify-icon icon="lucide:lock" className="text-base text-slate-200"></iconify-icon>
+                          <Icon icon="lucide:lock" className="text-base text-slate-200"></Icon>
                           Secure
                         </span>
                       </div>
@@ -1036,13 +1036,13 @@ export default function LandingPage() {
                       </div>
 
                       <button type="button" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-aqua-500 px-5 py-3 text-sm font-medium text-ink-950 shadow-glow hover:bg-[#2be2ff] transition">
-                        <iconify-icon icon="lucide:send" className="text-lg"></iconify-icon>
+                        <Icon icon="lucide:send" className="text-lg"></Icon>
                         Send request
                       </button>
 
                       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
                         <div className="inline-flex items-center gap-2">
-                          <iconify-icon icon="lucide:check" className="text-base text-emerald-200"></iconify-icon>
+                          <Icon icon="lucide:check" className="text-base text-emerald-200"></Icon>
                           No spam. Technical follow-up only.
                         </div>
                         <Link id="contact-email-link" href="#contact" className="text-slate-300 hover:text-white transition">Prefer email? demos@aquaxfoul.com</Link>
