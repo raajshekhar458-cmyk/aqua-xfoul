@@ -1004,7 +1004,7 @@ export default function LandingPage() {
                   </div>
 
                   <div className="lg:col-span-6">
-                    <form className="relative rounded-[1.25rem] bg-white/5 p-6 ring-1 ring-white/12">
+                    <form action="https://formsubmit.co/aquaxfoul@gmail.com" method="POST" className="relative rounded-[1.25rem] bg-white/5 p-6 ring-1 ring-white/12">
                       <div className="flex items-center justify-between">
                         <div>
                           <div className="text-sm font-medium text-white" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>Request a demo</div>
@@ -1019,23 +1019,27 @@ export default function LandingPage() {
                       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <label className="block">
                           <span className="text-xs text-slate-300">Name</span>
-                          <input type="text" placeholder="Alex Morgan" className="mt-2 w-full rounded-xl bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-aqua-500/70" />
+                          <input type="text" name="name" required placeholder="Alex Morgan" className="mt-2 w-full rounded-xl bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-aqua-500/70" />
                         </label>
                         <label className="block">
                           <span className="text-xs text-slate-300">Work email</span>
-                          <input type="email" placeholder="alex@operator.com" className="mt-2 w-full rounded-xl bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-aqua-500/70" />
+                          <input type="email" name="email" required placeholder="alex@operator.com" className="mt-2 w-full rounded-xl bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-aqua-500/70" />
                         </label>
                         <label className="block sm:col-span-2">
                           <span className="text-xs text-slate-300">Organization</span>
-                          <input type="text" placeholder="Fleet / Port / Drydock" className="mt-2 w-full rounded-xl bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-aqua-500/70" />
+                          <input type="text" name="organization" placeholder="Fleet / Port / Drydock" className="mt-2 w-full rounded-xl bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-aqua-500/70" />
                         </label>
                         <label className="block sm:col-span-2">
                           <span className="text-xs text-slate-300">What do you need?</span>
-                          <textarea rows={4} placeholder="Hull cleaning cadence, inspection outputs, pilot scope, vessel type..." className="mt-2 w-full rounded-xl bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-aqua-500/70"></textarea>
+                          <textarea name="message" required rows={4} placeholder="Hull cleaning cadence, inspection outputs, pilot scope, vessel type..." className="mt-2 w-full rounded-xl bg-ink-950/40 px-4 py-3 text-sm text-white placeholder:text-slate-500 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-aqua-500/70"></textarea>
                         </label>
                       </div>
 
-                      <button type="button" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-aqua-500 px-5 py-3 text-sm font-medium text-ink-950 shadow-glow hover:bg-[#2be2ff] transition">
+                      {/* Hidden configurations for FormSubmit */}
+                      <input type="hidden" name="_subject" value="New Demo Request from AquaXFoul Landing Page!" />
+                      <input type="hidden" name="_captcha" value="false" />
+
+                      <button type="submit" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-aqua-500 px-5 py-3 text-sm font-medium text-ink-950 shadow-glow hover:bg-[#2be2ff] transition">
                         <Icon icon="lucide:send" className="text-lg"></Icon>
                         Send request
                       </button>
@@ -1045,7 +1049,7 @@ export default function LandingPage() {
                           <Icon icon="lucide:check" className="text-base text-emerald-200"></Icon>
                           No spam. Technical follow-up only.
                         </div>
-                        <Link id="contact-email-link" href="#contact" className="text-slate-300 hover:text-white transition">Prefer email? demos@aquaxfoul.com</Link>
+                        <a id="contact-email-link" href="mailto:aquaxfoul@gmail.com" className="text-slate-300 hover:text-white transition">Prefer email? aquaxfoul@gmail.com</a>
                       </div>
                     </form>
 
