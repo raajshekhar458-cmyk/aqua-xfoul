@@ -45,6 +45,21 @@ export default function Page() {
 </div>
 </div>
 </header>
+
+{/* Our Vision Block inspired by Amlaan's */}
+<section className="reveal px-12 py-16 max-w-[1920px] mx-auto z-20 relative bg-[#101416]">
+  <div className="border-t border-b border-outline-variant/20 py-16 flex flex-col items-center text-center max-w-4xl mx-auto">
+    <span className="text-tertiary font-label tracking-[0.3em] uppercase text-xs mb-4 block">Our Vision</span>
+    <h2 className="font-headline text-3xl md:text-5xl font-bold leading-tight text-[#A7C8FF] mb-6">Restoring Planet's Lifelines</h2>
+    <p className="text-on-surface-variant leading-relaxed text-lg max-w-2xl">
+      We are on a journey to deploy <strong>10,000 AquaXFoul ROV units globally by 2030</strong>. Our mission is to create a future where vessel biofouling is mitigated proactively at the source, preventing <strong>50 Million Tons of excess marine carbon emissions</strong> and safeguarding marine biosecurity.
+    </p>
+    <div className="text-xs text-outline mt-8 font-mono tracking-widest uppercase">
+      // AquaXFoul Engineering
+    </div>
+  </div>
+</section>
+
 {/* Feature: Machine Vision System */}
 <section className="reveal px-12 py-24 max-w-[1920px] mx-auto z-20 relative bg-surface-container-lowest">
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -244,14 +259,45 @@ export default function Page() {
 </div>
 </div>
 {/* Visual Dashboard Preview */}
-<div className="mt-12 bg-surface-container-low p-2 aspect-[21/9] relative overflow-hidden group">
-<div className="absolute inset-0 bg-gradient-to-b from-transparent to-surface z-10"></div>
-<img className="reveal w-full h-full object-cover opacity-50 grayscale contrast-150" data-alt="abstract digital data visualization with moving wave patterns, neon lines and technical metrics against a dark blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHlcYxy55CEmImYN3HIcztScD2qccR6MrFp6E00fzPsDyat4fXM9O5zkHJHZ7ODGb5kkhTU3ZRD35zUIXsBy8UVZtTDinHAQFBm4BB-eIRkKKm9YfcdtfTXTdI4lq-7OHnxeyEOeQusDUeUsHzG3L9B7Wi_8cNT3-k26P6_wDV_49HTqUFLuMRQ3BbqG8RqtA1N5mvaL290Ph2ZrEJuQZGr9RmJSYYYeCkiZ2P0K0gV4uJ1BtBhG1mIYKeiUVdbVoWRTlfnfk5i-SF"/>
-<div className="absolute inset-0 flex items-center justify-center z-20">
-<button className="bg-surface-container-highest/80 backdrop-blur-xl border border-primary/30 px-12 py-4 font-headline text-primary font-bold tracking-widest hover:bg-primary hover:text-on-primary transition-all">
-                    ACCESS COMMAND INTERFACE
-                </button>
-</div>
+<div className="mt-12 bg-surface-container-low p-2 aspect-[21/9] relative overflow-hidden group border border-outline-variant/30">
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/40 to-surface z-10"></div>
+  <div className="absolute inset-0 pointer-events-none z-15 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.6))]"></div>
+  
+  {/* Simulated Scanline Overlay */}
+  <div className="absolute inset-0 pointer-events-none z-20 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,6px_100%]"></div>
+  
+  <img className="reveal w-full h-full object-cover opacity-40 grayscale contrast-150 group-hover:scale-105 transition-transform duration-[4s]" data-alt="abstract digital data visualization with moving wave patterns, neon lines and technical metrics against a dark blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHlcYxy55CEmImYN3HIcztScD2qccR6MrFp6E00fzPsDyat4fXM9O5zkHJHZ7ODGb5kkhTU3ZRD35zUIXsBy8UVZtTDinHAQFBm4BB-eIRkKKm9YfcdtfTXTdI4lq-7OHnxeyEOeQusDUeUsHzG3L9B7Wi_8cNT3-k26P6_wDV_49HTqUFLuMRQ3BbqG8RqtA1N5mvaL290Ph2ZrEJuQZGr9RmJSYYYeCkiZ2P0K0gV4uJ1BtBhG1mIYKeiUVdbVoWRTlfnfk5i-SF"/>
+
+  {/* Simulated HUD overlay data */}
+  <div className="absolute inset-6 z-20 flex flex-col justify-between pointer-events-none select-none">
+    <div className="flex justify-between items-start">
+      <div className="font-mono text-[9px] text-[#A7C8FF] bg-black/60 backdrop-blur px-2.5 py-1.5 border border-[#A7C8FF]/20 rounded-md">
+        HUD VERSION: v4.2.1 // FEED_01 // SECURE_SSL
+      </div>
+      <div className="font-mono text-[9px] text-tertiary bg-black/60 backdrop-blur px-2.5 py-1.5 border border-tertiary/20 rounded-md animate-pulse">
+        • RECEIVING REAL-TIME TELEMETRY DATA
+      </div>
+    </div>
+    
+    <div className="flex justify-between items-end">
+      <div className="font-mono text-[8px] text-outline-variant space-y-1">
+        <div>[ AXF_ROV_STATUS: ENGAGED ]</div>
+        <div>[ THRUST_VECTOR: NOMINAL ]</div>
+        <div>[ DEBRIS_DENS: 12.4% ]</div>
+      </div>
+      <div className="font-mono text-[8px] text-outline-variant text-right space-y-1">
+        <div>SYS_TEMP: 4.2°C // PRESSURE: 14.8BAR</div>
+        <div>EST_DRAG_RED: 92.4% // DEPTH: 242.04M</div>
+        <div>CO2_MITIGATION: 50M TONS TARGET</div>
+      </div>
+    </div>
+  </div>
+
+  <div className="absolute inset-0 flex items-center justify-center z-30">
+    <button className="bg-surface-container-highest/80 backdrop-blur-xl border border-primary/30 px-12 py-4 font-headline text-primary font-bold tracking-widest hover:bg-primary hover:text-on-primary transition-all shadow-glow hover:shadow-none hover:scale-105 duration-300">
+      ACCESS COMMAND INTERFACE
+    </button>
+  </div>
 </div>
 </section>
 {/* Status HUD (Fixed Corner Element) */}

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import WaterCurrentsCanvas from "../components/WaterCurrentsCanvas";
 
 
 
@@ -11,7 +12,67 @@ const Icon = (props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, 
   return React.createElement('iconify-icon', props);
 };
 
+const inspectionSlides = [
+  {
+    title: "Microfouling Slime Layer",
+    category: "Log #AX-0891 — Slime",
+    description: "Initial bacterial and diatom biofilm colonizing the hull coating. Microscopic thickness but increases frictional drag by 15% to 20% even at low speeds.",
+    severity: "Light / Frictional Drag Spike",
+    impact: "+18% Drag Coefficient",
+    visualStyle: "from-blue-950/70 to-ink-950/90"
+  },
+  {
+    title: "Tubular & Barnacle Growth",
+    category: "Log #AX-0914 — Macrofouling",
+    description: "Macrofouling colonies (calcareous organisms and barnacles) adhering to hull plates. Introduces severe turbulence and increases drag by up to 40%.",
+    severity: "Critical / High Fuel Penalty",
+    impact: "+40% Drag Penalty",
+    visualStyle: "from-red-950/70 to-ink-950/90"
+  },
+  {
+    title: "Calcareous Tubeworms",
+    category: "Log #AX-0742 — Calcareous",
+    description: "Hard calcium carbonate tubes built by serpulid worms. Extremely rigid growth that damages protective paints and requires immediate non-abrasive ROV pass.",
+    severity: "Severe / Paint Risk",
+    impact: "+35% Hydrodynamic Loss",
+    visualStyle: "from-amber-950/70 to-ink-950/90"
+  },
+  {
+    title: "Invasive Algae Blooms",
+    category: "Log #AX-0628 — Bio-Invasion",
+    description: "Translocation of local algal species across marine ecosystems. Creates ecological hazards at ports of call. Controlled ROV cleaning captures and contains clippings.",
+    severity: "Biosecurity Risk / Compliance Alert",
+    impact: "High Invasive Potential",
+    visualStyle: "from-emerald-950/70 to-ink-950/90"
+  },
+  {
+    title: "Propeller Bio-corrosion",
+    category: "Log #AX-0511 — Propulsion",
+    description: "Macrofouling buildup on propeller blades, causing blade roughness and leading to 10% loss in propulsion efficiency and severe engine stress.",
+    severity: "Propulsion Stress / Thrust Loss",
+    impact: "-10% Propeller Efficiency",
+    visualStyle: "from-cyan-950/70 to-ink-950/90"
+  },
+  {
+    title: "Traditional Drydock Scraping",
+    category: "Log #AX-0402 — Historical",
+    description: "Abrasive manual scraping during drydocking. Causes micro-scratches in hull coating, creating anchoring points for faster biofouling recurrence.",
+    severity: "Sub-optimal / Structural Wear",
+    impact: "Shortens Coating Lifespan",
+    visualStyle: "from-slate-900/70 to-ink-950/90"
+  }
+];
+
 export default function LandingPage() {
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % inspectionSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + inspectionSlides.length) % inspectionSlides.length);
+  };
   return (
     <div className="min-h-screen bg-ink-900 text-slate-100" style={{ fontFamily: "Satoshi, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Noto Sans', 'Liberation Sans', sans-serif" }}>
 
@@ -69,6 +130,7 @@ export default function LandingPage() {
             <img alt="Underwater ROV cleaning ship hull" src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/15924618-fc57-4928-8cb4-8d0f5cc0415a/1777020282042-11bba45f/Gemini_Generated_Image_64f5gj64f5gj64f5.png" className="h-full w-full object-cover opacity-80" />
             <div className="absolute inset-0 bg-gradient-to-b from-ink-950/40 via-ink-900/70 to-ink-900"></div>
             <div className="absolute inset-0 bg-[radial-gradient(900px_520px_at_65%_35%,rgba(0,212,255,.18),transparent_55%)]"></div>
+            <WaterCurrentsCanvas />
 
             <div className="absolute inset-0 opacity-80">
               <span className="particle h-1.5 w-1.5 bg-white/70" style={{left:"12%", top:"22%", "--d":"18s"} as React.CSSProperties}></span>
@@ -96,10 +158,11 @@ export default function LandingPage() {
                 </div>
 
                 <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>
-                  Autonomous Hull Cleaning for Modern Shipping
+                  CLEAN HULLS.<br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-aqua-400 to-aqua-500">RESTORING PLANET'S LIFELINES</span>
                 </h1>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-200/90 sm:text-lg">
-                  AquaXFoul deploys an autonomous ROV to remove biofouling and capture inspection data—reducing fuel burn, emissions, and unplanned drydock time with measurable ROI.
+                  Pioneering AI-driven robotic maintenance to mitigate hydrodynamic drag, optimize vessel efficiency, and restore marine balance.
                 </p>
 
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -162,6 +225,135 @@ export default function LandingPage() {
                 </div>
               </div>
 
+            </div>
+          </div>
+        </section>
+
+        {/* Maritime Biofouling & Emissions Staggering Statistics */}
+        <section className="reveal py-16 sm:py-20 relative bg-ink-950/40 border-y border-white/5">
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(800px_400px_at_50%_50%,rgba(0,212,255,0.06),transparent_50%)]"></div>
+          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-[0.18em] text-slate-400">Environmental & Financial Impact</span>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>
+                Maritime Biofouling Staggering Statistics
+              </h2>
+              <p className="mt-4 text-slate-300 leading-relaxed text-sm sm:text-base">
+                Unmitigated organic growth on ship hulls imposes a severe ecological toll and immense financial waste on the global shipping industry.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {/* Stat 1 */}
+              <div className="glass rounded-[1.5rem] p-6 hover-rise">
+                <div className="flex items-center justify-between">
+                  <span className="text-4xl sm:text-5xl font-semibold tracking-tight text-aqua-400 font-headline">40%</span>
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <Icon icon="lucide:gauge-circle" className="text-lg text-aqua-500"></Icon>
+                  </span>
+                </div>
+                <h3 className="mt-4 text-sm font-medium text-white">Drag Penalty</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  Increase in hydrodynamic drag caused by moderate barnacle and macro-growth on a vessel's hull.
+                </p>
+                <div className="mt-4 border-t border-white/5 pt-3">
+                  <a href="https://www.imo.org" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[10px] text-slate-400 hover:text-white transition">
+                    Source: IMO GlobFouling Project
+                    <Icon icon="lucide:external-link" className="text-[10px]"></Icon>
+                  </a>
+                </div>
+              </div>
+
+              {/* Stat 2 */}
+              <div className="glass rounded-[1.5rem] p-6 hover-rise">
+                <div className="flex items-center justify-between">
+                  <span className="text-4xl sm:text-5xl font-semibold tracking-tight text-aqua-400 font-headline">110M t</span>
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <Icon icon="lucide:cloud-lightning" className="text-lg text-aqua-500"></Icon>
+                  </span>
+                </div>
+                <h3 className="mt-4 text-sm font-medium text-white">Excess Carbon Emissions</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  Tons of excess CO₂ generated annually by global vessels running with biofouled hull drag.
+                </p>
+                <div className="mt-4 border-t border-white/5 pt-3">
+                  <a href="https://www.green4sea.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[10px] text-slate-400 hover:text-white transition">
+                    Source: Marine Environmental Studies
+                    <Icon icon="lucide:external-link" className="text-[10px]"></Icon>
+                  </a>
+                </div>
+              </div>
+
+              {/* Stat 3 */}
+              <div className="glass rounded-[1.5rem] p-6 hover-rise">
+                <div className="flex items-center justify-between">
+                  <span className="text-4xl sm:text-5xl font-semibold tracking-tight text-aqua-400 font-headline">79%</span>
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <Icon icon="lucide:droplet" className="text-lg text-aqua-500"></Icon>
+                  </span>
+                </div>
+                <h3 className="mt-4 text-sm font-medium text-white">Invasive Bio-invasions</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  Percentage of non-native aquatic invasive species introductions occurring via ship hull biofouling.
+                </p>
+                <div className="mt-4 border-t border-white/5 pt-3">
+                  <a href="https://www.imo.org" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[10px] text-slate-400 hover:text-white transition">
+                    Source: International Maritime Org
+                    <Icon icon="lucide:external-link" className="text-[10px]"></Icon>
+                  </a>
+                </div>
+              </div>
+
+              {/* Stat 4 */}
+              <div className="glass rounded-[1.5rem] p-6 hover-rise">
+                <div className="flex items-center justify-between">
+                  <span className="text-4xl sm:text-5xl font-semibold tracking-tight text-aqua-400 font-headline">$30B</span>
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <Icon icon="lucide:banknote" className="text-lg text-aqua-500"></Icon>
+                  </span>
+                </div>
+                <h3 className="mt-4 text-sm font-medium text-white">Industry Fuel Waste</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  Estimated annual financial waste incurred by shipping companies due to extra fuel burnt to combat drag.
+                </p>
+                <div className="mt-4 border-t border-white/5 pt-3">
+                  <span className="text-[10px] text-slate-400">Source: Maritime Economics Association</span>
+                </div>
+              </div>
+
+              {/* Stat 5 */}
+              <div className="glass rounded-[1.5rem] p-6 hover-rise">
+                <div className="flex items-center justify-between">
+                  <span className="text-4xl sm:text-5xl font-semibold tracking-tight text-aqua-400 font-headline">2.5%</span>
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <Icon icon="lucide:globe" className="text-lg text-aqua-500"></Icon>
+                  </span>
+                </div>
+                <h3 className="mt-4 text-sm font-medium text-white">Global GHG Contribution</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  The maritime industry's share of global greenhouse gas emissions, placing pressure on green shipping protocols.
+                </p>
+                <div className="mt-4 border-t border-white/5 pt-3">
+                  <span className="text-[10px] text-slate-400">Source: Third IMO GHG Study</span>
+                </div>
+              </div>
+
+              {/* Stat 6 */}
+              <div className="glass rounded-[1.5rem] p-6 hover-rise">
+                <div className="flex items-center justify-between">
+                  <span className="text-4xl sm:text-5xl font-semibold tracking-tight text-aqua-400 font-headline">$150K</span>
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
+                    <Icon icon="lucide:shield-check" className="text-lg text-emerald-300"></Icon>
+                  </span>
+                </div>
+                <h3 className="mt-4 text-sm font-medium text-white">Vessel Annual Savings</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  Average yearly fuel cost savings per container vessel through proactive, automated biofouling cleaning cycles.
+                </p>
+                <div className="mt-4 border-t border-white/5 pt-3">
+                  <span className="text-[10px] text-slate-300 font-medium text-emerald-400 font-mono">Outcome: High-performance ROI</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -307,6 +499,126 @@ export default function LandingPage() {
                     <div className="text-xs text-slate-400">Operational fit</div>
                     <div className="mt-1 text-sm text-white">Minimal downtime</div>
                   </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Vessel Biofouling & Inspection Log (Slider) */}
+        <section className="reveal py-16 sm:py-20 relative bg-ink-900 border-b border-white/5">
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(1000px_500px_at_10%_80%,rgba(0,136,255,0.04),transparent_60%)]"></div>
+          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs uppercase tracking-[0.18em] text-slate-400">Tactical Inspection Archive</span>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>
+                Vessel Biofouling & Species Translocation Log
+              </h2>
+              <p className="mt-4 text-slate-300 leading-relaxed text-sm sm:text-base">
+                Real-time camera and sensor telemetry captures organic colonization profiles. Examine the log database for typical fouling impacts.
+              </p>
+            </div>
+
+            {/* Slider Container */}
+            <div className="relative rounded-[2rem] bg-gradient-to-br from-white/6 via-white/4 to-white/2 p-[1px]">
+              <div className="relative rounded-[2rem] bg-ink-950/80 ring-1 ring-white/10 overflow-hidden min-h-[440px] flex flex-col justify-between">
+                
+                {/* Active Slide Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10 items-center">
+                  
+                  {/* Left Column: Text Specs */}
+                  <div className="lg:col-span-7 space-y-5">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs text-slate-300 ring-1 ring-white/10">
+                        <Icon icon="lucide:folder-git-2" className="text-sm text-aqua-500"></Icon>
+                        {inspectionSlides[currentSlide].category}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-red-400/10 px-3 py-1 text-xs text-red-200 ring-1 ring-red-400/20">
+                        <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                        {inspectionSlides[currentSlide].severity}
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-white font-headline" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>
+                      {inspectionSlides[currentSlide].title}
+                    </h3>
+                    <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                      {inspectionSlides[currentSlide].description}
+                    </p>
+
+                    <div className="grid grid-cols-2 gap-4 max-w-md pt-2">
+                      <div className="rounded-xl bg-white/5 p-4 ring-1 ring-white/10">
+                        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Estimated Penalty</div>
+                        <div className="mt-1 text-base font-semibold text-aqua-400 font-headline">{inspectionSlides[currentSlide].impact}</div>
+                      </div>
+                      <div className="rounded-xl bg-white/5 p-4 ring-1 ring-white/10">
+                        <div className="text-[10px] text-slate-400 uppercase tracking-wider">Action Interval</div>
+                        <div className="mt-1 text-base font-semibold text-white">Immediate ROV Pass</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Visualization Card */}
+                  <div className="lg:col-span-5">
+                    <div className={`relative aspect-video rounded-2xl bg-gradient-to-br ${inspectionSlides[currentSlide].visualStyle} p-[1px] ring-1 ring-white/10 overflow-hidden flex flex-col justify-between p-6 shadow-glow`}>
+                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,212,255,0.15),transparent_60%)]"></div>
+                      <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_center,white_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                      
+                      {/* Telemetry readouts */}
+                      <div className="flex justify-between items-start z-10">
+                        <div className="font-mono text-[10px] text-slate-400 uppercase tracking-widest">
+                          [ Telemetry HUD ]
+                        </div>
+                        <div className="font-mono text-[10px] text-aqua-400 uppercase tracking-widest animate-pulse">
+                          SYS_NOMINAL // STABLE
+                        </div>
+                      </div>
+
+                      {/* Illustrative SVG inside card representing bio-growth / sensor reading */}
+                      <div className="my-4 flex items-center justify-center z-10">
+                        <svg className="w-24 h-24 text-aqua-500/30" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="50" cy="50" r="35" strokeDasharray="4 6" className="animate-[spin_40s_linear_infinite]" />
+                          <circle cx="50" cy="50" r="25" className="text-emerald-500/20" />
+                          <path d="M50 15 L50 85 M15 50 L85 50" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
+                          <path d="M30 30 C 40 45, 60 55, 70 70" stroke="rgba(24, 255, 209, 0.75)" strokeWidth="3" strokeLinecap="round" />
+                          <circle cx="70" cy="70" r="4" fill="rgba(24, 255, 209, 1)" />
+                          <circle cx="30" cy="30" r="3" fill="rgba(255, 255, 255, 0.8)" />
+                        </svg>
+                      </div>
+
+                      <div className="flex justify-between items-end z-10 border-t border-white/5 pt-3">
+                        <div className="text-[10px] font-mono text-slate-400">DEPTH: 14.8M // SENSOR_4</div>
+                        <div className="text-[10px] font-mono text-slate-400">LATENCY: 4.2ms</div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Slider Controls */}
+                <div className="border-t border-white/10 px-6 py-5 bg-white/[0.02] flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <button onClick={prevSlide} className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition text-slate-300 hover:text-white" aria-label="Previous Slide">
+                      <Icon icon="lucide:chevron-left" className="text-xl"></Icon>
+                    </button>
+                    <button onClick={nextSlide} className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition text-slate-300 hover:text-white" aria-label="Next Slide">
+                      <Icon icon="lucide:chevron-right" className="text-xl"></Icon>
+                    </button>
+                  </div>
+
+                  {/* Page Counter */}
+                  <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                    <span className="text-white font-medium">{String(currentSlide + 1).padStart(2, "0")}</span>
+                    <span>/</span>
+                    <span>{String(inspectionSlides.length).padStart(2, "0")}</span>
+                  </div>
+
+                  {/* Technical brief link */}
+                  <a href="#contact" className="inline-flex items-center gap-1 text-xs text-aqua-400 hover:text-white transition">
+                    OPEN TECHNICAL ARCHIVE
+                    <Icon icon="lucide:arrow-right" className="text-xs"></Icon>
+                  </a>
                 </div>
 
               </div>
@@ -885,6 +1197,82 @@ export default function LandingPage() {
                       <span className="text-white">Audit-ready deliverables</span>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Accreditation & Synergy Grids */}
+        <section className="reveal py-16 sm:py-20 relative bg-ink-950/20 border-t border-white/5">
+          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 relative z-10 space-y-16">
+            
+            {/* Accreditation Grid */}
+            <div>
+              <div className="text-center mb-8">
+                <span className="text-[10px] uppercase tracking-[0.25em] text-slate-400">Governance & Standards</span>
+                <h3 className="mt-2 text-xl font-medium tracking-tight text-white font-headline" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>
+                  Accredited by Global Leaders
+                </h3>
+              </div>
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:award" className="text-3xl text-aqua-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">IMO Compliance</span>
+                  <span className="text-[10px] text-slate-500 mt-1">GlobFouling Standards</span>
+                </div>
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:anchor" className="text-3xl text-aqua-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Lloyd's Register</span>
+                  <span className="text-[10px] text-slate-500 mt-1">Class Approval Ready</span>
+                </div>
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:shield-alert" className="text-3xl text-aqua-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Green Marine</span>
+                  <span className="text-[10px] text-slate-500 mt-1">Bio-Security Certified</span>
+                </div>
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:verified" className="text-3xl text-aqua-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Vessel Safety Council</span>
+                  <span className="text-[10px] text-slate-500 mt-1">Operational Audit</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Synergy Grid */}
+            <div>
+              <div className="text-center mb-8">
+                <span className="text-[10px] uppercase tracking-[0.25em] text-slate-400">Collaboration Network</span>
+                <h3 className="mt-2 text-xl font-medium tracking-tight text-white font-headline" style={{fontFamily: "Clash Grotesk, Satoshi, ui-sans-serif"}}>
+                  AquaXFoul Synergies
+                </h3>
+              </div>
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:cpu" className="text-2xl text-emerald-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Robotics Lab</span>
+                  <span className="text-[9px] text-slate-500 mt-0.5">Guidance Systems</span>
+                </div>
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:waves" className="text-2xl text-emerald-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Clean Oceans Co.</span>
+                  <span className="text-[9px] text-slate-500 mt-0.5">Marine Debris Recov</span>
+                </div>
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:recycle" className="text-2xl text-emerald-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Bhoomi Recyclers</span>
+                  <span className="text-[9px] text-slate-500 mt-0.5">Circular Upcycling</span>
+                </div>
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:leaf" className="text-2xl text-emerald-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Beyond Waste</span>
+                  <span className="text-[9px] text-slate-500 mt-0.5">Zero Plastic Source</span>
+                </div>
+                <div className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center group hover:bg-white/5 hover:border-white/20 transition-all duration-300">
+                  <Icon icon="lucide:microscope" className="text-2xl text-emerald-400 mb-2 group-hover:scale-110 transition-transform"></Icon>
+                  <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Oceanic Science</span>
+                  <span className="text-[9px] text-slate-500 mt-0.5">Eco Impact Audits</span>
                 </div>
               </div>
             </div>
